@@ -6,9 +6,7 @@ from typing import List, TypeVar
 
 
 class Auth:
-
-    def __init__(self):
-        pass
+    """ Authentication class """
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """returns False"""
