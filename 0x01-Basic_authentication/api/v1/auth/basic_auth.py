@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """ basic_authentication module"""
 from api.v1.auth.auth import Auth
+from models.user import User
+from typing import TypeVar
 import base64
 import binascii
 
@@ -44,3 +46,20 @@ class BasicAuth(Auth):
             return (None, None)
         a, b = (x for x in decoded_base64_authorization_header.split(':'))
         return (a, b)
+
+    def user_object_from_credentials(
+            self, user_email: str, user_pwd: str) -> TypeVar('User'):
+        """ user object from credential """
+        if user_email is None or user_pwd is None:
+            return None
+        if not (isinstance(user_email, str)):
+            return None
+        if not (isinstance(user_pwd, str)):
+            return None
+        user = User.search({'email': user_email})
+        if len(user) == 0:
+            return None
+        if user[0].is_valid_password(user_pwd):
+            return user[0]
+        else:
+            return None
