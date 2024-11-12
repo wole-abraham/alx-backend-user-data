@@ -10,15 +10,17 @@ class Auth:
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """returns False"""
-        if path is None:
+        if path is None or len(path) == 0:
             return True
-        elif excluded_paths is None:
+        elif excluded_paths is None or len(excluded_paths) == 0:
             return True
         elif path:
             if path[-1] != '/':
                 path = path + '/'
             if path in excluded_paths:
                 return False
+            else:
+                return True
 
     def authorization_header(self, request=None) -> str:
         """ returns False """
@@ -27,3 +29,4 @@ class Auth:
     def current_user(self, request=None) -> TypeVar('User'):
         """ return False """
         return None
+
