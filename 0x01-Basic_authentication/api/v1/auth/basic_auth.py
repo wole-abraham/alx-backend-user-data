@@ -33,7 +33,7 @@ class BasicAuth(Auth):
         else:
             return decoded.decode()
 
-    def extract_user_crendentials(
+    def extract_user_credentials(
             self, decoded_base64_authorization_header: str) -> str:
         """ Extract user credentials """
         if decoded_base64_authorization_header is None:
