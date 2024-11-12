@@ -56,7 +56,10 @@ class BasicAuth(Auth):
             return None
         if not (isinstance(user_pwd, str)):
             return None
-        user = User.search({'email': user_email})
+        try:
+            user = User.search({'email': user_email})
+        except KeyError:
+            return None
         if len(user) == 0:
             return None
         if user[0].is_valid_password(user_pwd):
