@@ -21,7 +21,7 @@ def auth_session():
     if not user:
         return jsonify({"error": "no user found for this email"}), 404
     if not user[0].is_valid_password(passsword):
-        return jsonify({"error": "wrong password"}), 404
+        return jsonify({"error": "wrong password"}), 401
     else:
         from api.v1.app import auth
         key = auth.create_session(user[0].id)
