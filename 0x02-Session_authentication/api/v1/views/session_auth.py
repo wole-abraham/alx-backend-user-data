@@ -30,7 +30,7 @@ def auth_session():
         return out
 
 
-@app_views.route("/auth_session/logout", methods=['GET'], strict_slashes=False)
+@app_views.route("/auth_session/logout", methods=['DELETE'], strict_slashes=False)
 def logout():
     """
     for logging out user
