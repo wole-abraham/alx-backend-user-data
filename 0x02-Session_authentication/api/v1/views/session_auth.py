@@ -29,6 +29,7 @@ def auth_session():
         out.set_cookie(getenv("SESSION_NAME"), key)
         return out
 
+
 @app_views.route("/auth_session/logout", methods=['GET'], strict_slashes=False)
 def destroy_sesion():
     """ destroys the user session """

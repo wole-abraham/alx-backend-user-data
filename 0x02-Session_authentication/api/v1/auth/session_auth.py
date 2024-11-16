@@ -44,7 +44,7 @@ class SessionAuth(Auth):
         key_to_session = self.session_cookie(request)
         user = self.user_id_for_session_id(key_to_session)
         return User.get(user)
-    
+
     def destroy_session(self, request=None):
         """ destroys user sesssion """
         key = getenv('SESSION_NAME')
