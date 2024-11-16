@@ -55,4 +55,3 @@ class SessionAuth(Auth):
         if self.user_id_for_session_id(key) is None:
             return False
         del self.user_id_by_session_id[self.user_id_for_session_id(key)]
-        
