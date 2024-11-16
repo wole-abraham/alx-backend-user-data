@@ -8,6 +8,7 @@ from api.v1.views import app_views
 
 @app_views.route("/auth_session/login", methods=['POST'], strict_slashes=False)
 def auth_session():
+    """ auth sessions """
     email = request.form.get('email')
     passsword = request.form.get("password")
     if email is None:
