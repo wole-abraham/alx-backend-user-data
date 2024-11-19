@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ SQLalchmy import """
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
