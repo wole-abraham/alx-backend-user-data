@@ -50,13 +50,15 @@ class DB:
         self._session.commit()
         return user
 
-    def find_user_by(self, **kwargs) -> UserWarning:
-        """  finds user by """
+    def find_user_by(self, **kwargs) -> User:
+        """  finds user by
+            retunrs
+          """
         if not kwargs:
             raise InvalidRequestError
         try:
             query = self._session.query(User).filter_by(**kwargs).first()
-            if query is None:
+            if not query:
                 raise NoResultFound
             return query
         except AttributeError:
