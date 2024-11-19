@@ -6,7 +6,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 from typing import Callable
-from sqlalchemy.exc import InvalidRequestError, NoResultFound
+from sqlalchemy.exc import InvalidRequestError
+from sqlalchemy.orm.exc import NoResultFound
 from user import User
 
 from user import Base
@@ -51,10 +52,12 @@ class DB:
 
     def find_user_by(self, **kwargs):
         """  finds user by """
+        if not kwargs:
+            raise InvalidRequestError
         try:
             query = self._session.query(User).filter_by(**kwargs).first()
+            if query is None:
+                raise NoResultFound
+            return query
         except AttributeError:
             raise InvalidRequestError
-        if query is None:
-            raise NoResultFound
-        return query
