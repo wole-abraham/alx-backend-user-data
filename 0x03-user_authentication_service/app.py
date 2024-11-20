@@ -10,11 +10,13 @@ AUTH = Auth()
 
 @app.route("/")
 def payload():
+    """ retunrs payload message"""
     return jsonify({"message": "Bienvenue"})
 
 
 @app.route("/users", methods=['POST'])
 def users():
+    """ registers user """
     email = request.form.get('email')
     password = request.form.get('password')
     try:
