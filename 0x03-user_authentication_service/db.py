@@ -63,3 +63,14 @@ class DB:
             return query
         except AttributeError:
             raise InvalidRequestError
+
+    def update_user(self, user_id: int, **kwargs):
+        """ find_user
+            updates user information
+        """
+        user = self.find_user_by(id=user_id)
+        for attr, value in kwargs.items():
+            if not hasattr(user, attr):
+                raise ValueError
+            setattr(user, attr, value)
+        self._session.commit()
