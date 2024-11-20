@@ -28,7 +28,7 @@ class Auth:
         """
         self._db = DB()
 
-    def register_user(self, email: str, password:str) -> Union[None, User]:
+    def register_user(self, email: str, password: str) -> Union[None, User]:
         """ register user -> User <- email, password
         """
         try:
