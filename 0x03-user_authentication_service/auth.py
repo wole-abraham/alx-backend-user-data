@@ -2,6 +2,7 @@
 """ hashed passwords using bcrypt"""
 import bcrypt
 from db import DB
+from typing import Union
 from user import User
 from sqlalchemy.exc import NoResultFound
 
