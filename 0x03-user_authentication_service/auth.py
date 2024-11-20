@@ -6,6 +6,7 @@ from typing import Union
 from user import User
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.orm.exc import NoResultFound
+from uuid import uuid4
 
 
 def _hash_password(password: str) -> bytes:
@@ -21,6 +22,11 @@ def _hash_password(password: str) -> bytes:
     password = password.encode('utf-8')
     hash = bcrypt.hashpw(password, salt)
     return hash
+
+
+def _generate_uuid(self) -> str:
+    """UUID: """
+    return str(uuid4())
 
 
 class Auth:
