@@ -3,7 +3,7 @@
 import bcrypt
 
 
-def _hash_password(self, password: str) -> bytes:
+def _hash_password(password: str) -> bytes:
     """
     password_string -> hashed_password
     bcrypt.hashpw
