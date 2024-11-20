@@ -64,7 +64,7 @@ class DB:
         except AttributeError:
             raise InvalidRequestError
 
-    def update_user(self, user_id: int, **kwargs):
+    def update_user(self, user_id: int, **kwargs) -> None:
         """ find_user
             updates user information
         """
@@ -74,3 +74,4 @@ class DB:
                 raise ValueError
             setattr(user, attr, value)
         self._session.commit()
+        return None
