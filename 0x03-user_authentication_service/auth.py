@@ -24,9 +24,17 @@ def _hash_password(password: str) -> bytes:
     return hash
 
 
-def _generate_uuid(self) -> str:
-    """UUID: """
-    return str(uuid4())
+def _generate_uuid() -> str:
+    """_summary_
+
+    Raises:
+        ValueError: _description_
+
+    Returns:
+        str: _description_
+    """
+    id = uuid4()
+    return str(id)
 
 
 class Auth:
