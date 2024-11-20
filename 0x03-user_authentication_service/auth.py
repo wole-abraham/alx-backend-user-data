@@ -9,9 +9,13 @@ from sqlalchemy.exc import NoResultFound
 
 def _hash_password(password: str) -> bytes:
     """
-    password_string -> hashed_password
-    bcrypt.hashpw
+    Hashes a plain-text password using bcrypt.
+    Args:
+        password (str): The plain-text password.
+    Returns:
+        bytes: The hashed password.
     """
+
     salt = bcrypt.gensalt()
     password = password.encode('utf-8')
     hash = bcrypt.hashpw(password, salt)
@@ -23,17 +27,25 @@ class Auth:
     """
 
     def __init__(self):
-        """__db = DB()
-
+        """
+        Initializes the Auth instance with a database instance.
         """
         self._db = DB()
 
     def register_user(self, email: str, password: str) -> Union[None, User]:
-        """ register user -> User <- email, password
+        """
+        Registers a user if the email does not already exist.
+        Args:
+            email (str): The user's email.
+            password (str): The user's plain-text password.
+        Returns:
+            User: The created User object.
+        Raises:
+            ValueError: If the email is already registered.
         """
         try:
             self._db.find_user_by(email=email)
-        except NoResultFound:
-            return self._db.add_user(email, _hash_password(password))
-        else:
             raise ValueError(f"User {email} already exists")
+        except NoResultFound:
+            hashed_password = _hash_password(password)
+            return self._db.add_user(email, hashed_password)
