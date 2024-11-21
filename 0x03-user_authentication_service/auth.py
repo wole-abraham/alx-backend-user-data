@@ -109,7 +109,8 @@ class Auth:
         destroys session
         """
         try:
-            self._db.find_user_by(id=user_id).id = None
+            user = self._db.find_user_by(id=user_id)
+            user.id = None
             self._db._session.commit()
             return None
         except NoResultFound:
