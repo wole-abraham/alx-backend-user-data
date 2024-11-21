@@ -76,7 +76,7 @@ class Auth:
         except NoResultFound:
             return False
 
-    def create_sesssion(self, email) -> str:
+    def create_session(self, email) -> str:
         """
             Find the user with email ->
             Generate UUID and store in db
@@ -86,7 +86,7 @@ class Auth:
             user = self._db.find_user_by(email=email)
             uuid = _generate_uuid()
             user.session_id = uuid
-            self._db.commit()
+            self._db._session.commit()
             return uuid
         except NoResultFound:
             return None
